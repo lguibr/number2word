@@ -1,9 +1,10 @@
 # -*- coding: utf-8 -*-
 import os
 
-from conf.common import *  # noqa: F403 F401
-from conf.common import BASE_DIR
 from dotenv import load_dotenv
+
+from .common import *  # noqa: F403 F401
+from .common import BASE_DIR
 
 load_dotenv()
 
