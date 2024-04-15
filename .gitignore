@@ -3,5 +3,4 @@
 .pytest_cache
 .env
 __pycache__
-db.sqlite3
-algo
+*.sqlite3
