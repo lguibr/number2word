@@ -1,0 +1,26 @@
+# Exclude version control files
+.git
+.gitignore
+
+# Exclude build and cache directories
+build/
+__pycache__/
+*.pyc
+.mypy_cache
+.pytest_cache
+
+
+# Exclude development and testing files
+*.log
+*.sqlite3
+
+# Exclude editor and IDE files
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Exclude other unnecessary files
+Dockerfile
+.dockerignore
+README.md
