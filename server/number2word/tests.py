@@ -92,7 +92,7 @@ class AsyncNumberToEnglishTests(TestCase):
                     status.HTTP_400_BAD_REQUEST,
                 )
                 self.assertJSONEqual(
-                    response.content,
+                    response.content.decode(),
                     {
                         "success": False,
                         "error": {
