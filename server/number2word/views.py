@@ -19,7 +19,7 @@ def get(request: Request, number: int) -> JsonResponse:
 
 @csrf_exempt  # Remove to deploy
 @require_http_methods(["POST"])
-async def post(request):
+async def post(request: Request) -> JsonResponse:
     try:
         data = json.loads(request.body)
         number_str = data.get("number", "")

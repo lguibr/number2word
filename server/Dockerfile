@@ -10,6 +10,10 @@ COPY . .
 # Install any needed packages specified in requirements/prod.txt
 RUN pip install -r requirements/prod.txt
 
+# Run Django migrations - use the correct management command if not `manage.prod.py`
+RUN python manage.prod.py makemigrations
+RUN python manage.prod.py migrate
+
 # Make port 8000 available to the world outside this container
 EXPOSE 8000
 
