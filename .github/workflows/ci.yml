@@ -25,9 +25,9 @@ jobs:
 
       - name: Run code checks
         run: |
-          mypy server
+          mypy --config-file server/mypy.ini server
           flake8 server
-          isort --check-only server
+          isort --settings-path server/pyproject.toml --check-only server
           black --check server
 
   tests:
