@@ -3,6 +3,8 @@ import * as ec2 from "aws-cdk-lib/aws-ec2";
 import * as ecs from "aws-cdk-lib/aws-ecs";
 import * as ecs_patterns from "aws-cdk-lib/aws-ecs-patterns";
 import * as sm from "aws-cdk-lib/aws-secretsmanager";
+import * as iam from "aws-cdk-lib/aws-iam";
+
 import * as dotenv from "dotenv";
 dotenv.config({ path: "../.env" });
 
@@ -19,7 +21,7 @@ export class InfraStack extends cdk.Stack {
     });
 
     const secret = sm.Secret.fromSecretAttributes(this, "ImportedSecret", {
-      secretCompleteArn: `arn:aws:secretsmanager:${process.env.AWS_REGION}:${process.env.AWS_ACCOUNT}:secret:trellis-example-123456`,
+      secretCompleteArn: `arn:aws:secretsmanager:${process.env.AWS_REGION}:${process.env.AWS_ACCOUNT}:secret:trellis-example-J06vE9`,
     });
 
     const fargateService =
@@ -49,6 +51,11 @@ export class InfraStack extends cdk.Stack {
           publicLoadBalancer: true,
         }
       );
+
+    // Adding IAM permissions to the execution role
+    fargateService.taskDefinition.executionRole?.addManagedPolicy(
+      iam.ManagedPolicy.fromAwsManagedPolicyName("SecretsManagerReadWrite")
+    );
 
     new cdk.CfnOutput(this, "LoadBalancerDNS", {
       value: fargateService.loadBalancer.loadBalancerDnsName,
