@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 import json
+from typing import cast
 
 from django.test import AsyncClient, TestCase
 from django.urls import reverse
@@ -92,7 +93,7 @@ class AsyncNumberToEnglishTests(TestCase):
                     status.HTTP_400_BAD_REQUEST,
                 )
                 self.assertJSONEqual(
-                    response.content.decode(),
+                    cast(str, response.content),
                     {
                         "success": False,
                         "error": {
