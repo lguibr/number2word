@@ -52,7 +52,7 @@ class NumberToEnglishTests(APITestCase):
 
 
 class AsyncNumberToEnglishTests(TestCase):
-    async def test_post_valid_numbers(self):
+    async def test_post_valid_numbers(self) -> None:
         """Test the POST method with various valid numbers."""
         client = AsyncClient()
         test_cases = [
