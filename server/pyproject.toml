@@ -1,5 +1,5 @@
 [tool.pytest]
-DJANGO_SETTINGS_MODULE = "server.conf.common"
+DJANGO_SETTINGS_MODULE = "server.conf.dev"
 python_files = ["tests.py", "test_*.py", "*_tests.py"]
 
 [tool.isort]

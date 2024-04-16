@@ -49,6 +49,8 @@ jobs:
           pip install -r server/requirements/dev.txt
 
       - name: Run tests
+        env:
+          SECRET_KEY: ${{ secrets.SECRET_KEY }}
         run: |
           cd server
           python manage.py test
