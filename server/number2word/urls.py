@@ -1,17 +1,17 @@
 # -*- coding: utf-8 -*-
 from django.urls import path
 
-from .views import NumberToEnglishView
+from .views import get, post
 
 urlpatterns = [
     path(
-        "<str:number>",
-        NumberToEnglishView.as_view(),
+        "sync/<str:number>",
+        get,
         name="num_to_english",
     ),
     path(
-        "",
-        NumberToEnglishView.as_view(),
+        "async/",
+        post,
         name="num_to_english",
     ),
 ]
