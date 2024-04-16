@@ -25,10 +25,11 @@ jobs:
 
       - name: Run code checks
         run: |
-          mypy --config-file server/mypy.ini server
-          flake8 server
-          isort --settings-path server/pyproject.toml --check-only server
-          black --check server
+          cd server
+          mypy --config-file ./mypy.ini .
+          flake8 .
+          isort --settings-path ./pyproject.toml --check-only .
+          black --check .
 
   tests:
     needs: code-quality
