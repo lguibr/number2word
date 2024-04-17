@@ -8,11 +8,7 @@ WORKDIR /usr/src/app
 COPY . .
 
 # Install any needed packages specified in requirements/prod.txt
-RUN pip install -r requirements/prod.txt
-
-# Run Django migrations - use the correct management command if not `manage.prod.py`
-RUN python manage.prod.py makemigrations
-RUN python manage.prod.py migrate
+RUN pip install --no-cache-dir -r requirements/prod.txt
 
 # Make port 8000 available to the world outside this container
 EXPOSE 8000
@@ -20,5 +16,7 @@ EXPOSE 8000
 # Define environment variables
 ENV DJANGO_SETTINGS_MODULE=server.conf.prod
 
-# Start Gunicorn with Uvicorn workers
-CMD ["gunicorn", "server.asgi:application", "-w", "4", "-k", "uvicorn.workers.UvicornWorker", "--bind", "0.0.0.0:8000"]
+# Use an entrypoint script to manage migration commands and start the server
+COPY entrypoint.sh /usr/src/app/
+RUN chmod +x /usr/src/app/entrypoint.sh
+ENTRYPOINT ["/usr/src/app/entrypoint.sh"]
