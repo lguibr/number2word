@@ -2,12 +2,14 @@
 .git
 .gitignore
 
+
 # Exclude build and cache directories
 build/
 __pycache__/
 *.pyc
 .mypy_cache
 .pytest_cache
+.venv
 
 
 # Exclude development and testing files

@@ -15,9 +15,7 @@ export class InfraStack extends cdk.Stack {
       "DjangoService",
       {
         cluster,
-        cpu: 512,
-        memoryLimitMiB: 1024,
-        desiredCount: 2,
+        desiredCount: 1,
         taskImageOptions: {
           environment: {
             DEBUG: "0",
