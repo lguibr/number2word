@@ -94,6 +94,8 @@ jobs:
         run: npm install -g aws-cdk
 
       - name: CDK diff
+        env:
+          AWS_ACCOUNT: ${{ secrets.AWS_ACCOUNT }}
         run: |
           cd infra
           npm ci
@@ -118,6 +120,8 @@ jobs:
         run: npm install -g aws-cdk
 
       - name: Deploy with CDK
+        env:
+          AWS_ACCOUNT: ${{ secrets.AWS_ACCOUNT }}
         run: |
           cd infra
           npm ci
