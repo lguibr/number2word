@@ -5,17 +5,16 @@ from rest_framework import serializers
 class NumberRequestSerializer(serializers.Serializer):
     number = serializers.CharField()
 
-    def validate_number(
-        self: serializers.Serializer, value: str
-    ) -> float | str | Exception:
+    def validate_number(self, value: str):
         try:
             float_value = float(value)
             if float_value.is_integer():
                 return int(float_value)
             return float_value
         except ValueError:
-            raise serializers.ValidationError("Input must be a valid number.")
-        return value
+            raise serializers.ValidationError(
+                {"number": "Input must be a valid number."}
+            )
 
 
 class NumberResponseSerializer(serializers.Serializer):

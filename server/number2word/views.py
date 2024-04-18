@@ -3,7 +3,6 @@ import json
 
 from asgiref.sync import sync_to_async
 from django.http import JsonResponse
-from django.views.decorators.csrf import csrf_exempt
 from django.views.decorators.http import require_http_methods
 from rest_framework.request import Request
 
@@ -17,7 +16,6 @@ def get(request: Request, number: int) -> JsonResponse:
     return handle_number(request, number)
 
 
-@csrf_exempt  # Remove to deploy
 @require_http_methods(["POST"])
 async def post(request: Request) -> JsonResponse:
     try:
