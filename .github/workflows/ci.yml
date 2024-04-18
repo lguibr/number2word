@@ -31,6 +31,15 @@ jobs:
           isort --settings-path ./pyproject.toml --check-only .
           black --check .
 
+  build-ui:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Install dependencies
+        run: yarn install --frozen-lockfile
+      - name: Generate static files
+        run: yarn generate
+
   tests:
     needs: code-quality
     runs-on: ubuntu-latest
@@ -102,7 +111,7 @@ jobs:
           npx cdk diff
 
   cdk-deploy:
-    needs: docker-push
+    needs: [docker-push, build-ui]
     if: github.event_name == 'push' && github.ref == 'refs/heads/main'
     runs-on: ubuntu-latest
 
