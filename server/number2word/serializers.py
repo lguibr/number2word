@@ -5,7 +5,10 @@ from rest_framework import serializers
 class NumberRequestSerializer(serializers.Serializer):
     number = serializers.CharField()
 
-    def validate_number(self, value: str):
+    def validate_number(
+        self,
+        value: str,
+    ) -> float | serializers.ValidationError:
         try:
             float_value = float(value)
             if float_value.is_integer():
