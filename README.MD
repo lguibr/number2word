@@ -6,13 +6,13 @@ This repository hosts a full-stack application designed to convert numeric value
 
 ### Components
 
-- **API Server:** A Django application with endpoints to convert numbers into words.
+- **API backend:** A Django application with endpoints to convert numbers into words.
 - **Frontend:** A Vue/Nuxt application that interacts with the Django API.
 - **Infrastructure:** CDK scripts for deploying the application on AWS.
 
 ### Project Structure
 
-- `/server`: Contains the Django application with all necessary configurations for the API server. Please refer to the `README.md` in this folder for detailed information on setup, usage, and API documentation.
+- `/backend`: Contains the Django application with all necessary configurations for the API backend. Please refer to the `README.md` in this folder for detailed information on setup, usage, and API documentation.
 - `/ui`: Houses the Vue/Nuxt application code. The `README.md` in this folder provides instructions on installation, running the app locally, and building for production.
 - `/infra`: Includes the CDK deployment scripts for setting up AWS infrastructure. Check the `README.md` here for details on deploying the application to AWS.
 
@@ -28,7 +28,7 @@ To begin using this project, follow these steps:
    ```
 
 2. **API Server Setup:**
-   Navigate to the `/server` directory and follow the instructions in the `README.md` to set up the Django server.
+   Navigate to the `/backend` directory and follow the instructions in the `README.md` to set up the Django server.
 
 3. **Frontend Setup:**
    Move to the `/ui` folder and follow the setup instructions detailed in the `README.md` to get the frontend running.

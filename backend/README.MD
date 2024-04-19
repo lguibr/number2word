@@ -34,6 +34,15 @@ To get this project up and running locally on your machine:
 
 You should now have the application running and accessible at `http://localhost:8000/`.
 
+## API Documentation
+
+Access the API documentation and interact with the API through the Swagger UI:
+
+- **Swagger JSON**: http://localhost:8000/swagger/
+- **Swagger UI**: http://localhost:8000/swagger-ui/
+
+These endpoints provide a visual interface for the API's endpoints, allowing for easy testing and exploration of its functionalities.
+
 ## Configuration Files
 
 - **`conf/common`**: Contains the common settings for the DEV and PROD environments of Django application.
