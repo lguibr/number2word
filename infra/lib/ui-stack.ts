@@ -8,6 +8,7 @@ export class UiAppDeploymentStack extends cdk.Stack {
 
     // Create a new S3 bucket to hold the UI application
     const bucket = new s3.Bucket(this, "UiAppBucket", {
+      bucketName: `bucket-trellis-law-ui-testing`,
       websiteIndexDocument: "index.html",
       publicReadAccess: true,
       removalPolicy: cdk.RemovalPolicy.DESTROY, // Automatically delete bucket when the stack is deleted
