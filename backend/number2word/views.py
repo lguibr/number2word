@@ -3,7 +3,9 @@ import json
 
 from asgiref.sync import async_to_sync, sync_to_async
 from django.http import JsonResponse
+from django.utils.decorators import method_decorator
 from django.views import View
+from django.views.decorators.csrf import csrf_exempt
 from rest_framework.request import Request
 
 from .converter import number_to_words
@@ -32,6 +34,7 @@ async def async_handle_number(
         return validation_error(number_str)
 
 
+@method_decorator(csrf_exempt, name="dispatch")
 class AsyncNumberPostView(View):
     """
     post:

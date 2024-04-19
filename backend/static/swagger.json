@@ -1,0 +1,97 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "version": "1.0.0",
+    "title": "Number to English Converter API",
+    "description": "API to convert numbers to words in English."
+  },
+  "host": "InfraS-Djang-PhU6UsWNjk0H-891179164.us-east-1.elb.amazonaws.com",
+  "basePath": "/",
+  "schemes": ["http"],
+  "paths": {
+    "/num_to_english/{number}": {
+      "get": {
+        "summary": "Convert a number to words synchronously",
+        "operationId": "syncNumberToEnglish",
+        "tags": ["Conversion"],
+        "parameters": [
+          {
+            "name": "number",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "description": "The number to convert"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful conversion",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "success": { "type": "boolean" },
+                "data": { "$ref": "#/definitions/NumberResponse" }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid input"
+          }
+        }
+      }
+    },
+    "/num_to_english/": {
+      "post": {
+        "summary": "Convert a number to words asynchronously",
+        "operationId": "asyncNumberToEnglish",
+        "tags": ["Conversion"],
+        "consumes": ["application/json"],
+        "parameters": [
+          {
+            "name": "number",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/NumberRequest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful conversion",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "success": { "type": "boolean" },
+                "data": { "$ref": "#/definitions/NumberResponse" }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid input or JSON data"
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "NumberRequest": {
+      "type": "object",
+      "properties": {
+        "number": {
+          "type": "string",
+          "example": "1234"
+        }
+      }
+    },
+    "NumberResponse": {
+      "type": "object",
+      "properties": {
+        "num_in_english": {
+          "type": "string",
+          "example": "one thousand two hundred thirty-four"
+        }
+      }
+    }
+  }
+}
