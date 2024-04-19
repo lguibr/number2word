@@ -58,3 +58,17 @@ This Vue/Nuxt/Vuetify web app converts numbers to words. It's built for efficien
 ## Contributing
 
 Contribute by submitting pull requests or reporting issues. [View license here](./../LICENSE).
+
+## Next Steps
+
+### Playwright E2E Tests
+
+We plan to integrate Playwright for end-to-end testing to ensure all functionalities perform as expected across all major browsers. This will help maintain the robustness of the application as new features are developed.
+
+### Storybook for Component Showcase
+
+Implementing Storybook will allow us to develop and showcase UI components in isolation, making it easier to visualize changes and improve UI consistency without deploying the full application.
+
+### Enhanced State Management
+
+As the application scales, a more robust state management solution will be necessary. We are considering upgrading to Pinia, which offers a more flexible and dev-friendly approach compared to traditional Vuex-based management in Vue/Nuxt applications.

@@ -34,6 +34,51 @@ graph TB
 
 ```
 
+## CI/CD Pipeline
+
+Our CI/CD pipeline, built with GitHub Actions, manages automated testing, building, and deployment for both the frontend and backend of the Trellis-Law project. It triggers on pushes to the `main` branch and on pull requests to ensure all changes are properly vetted before deployment.
+
+### Workflow Steps
+
+```mermaid
+graph TD
+    ui-code-quality[UI Code Quality Check]
+    ui-code-quality --> build-ui[Build UI]
+
+    build-ui -->|On Pull Request| cdk-ui-diff[CDK UI Diff]
+    build-ui -->|On Push| cdk-deploy-ui[CDK Deploy UI]
+
+    code-quality[Backend Code Quality Check] --> tests[Run Backend Tests]
+
+    tests --> docker-push[Build & Push Docker Image]
+    docker-push --> cdk-deploy[CDK Deploy Backend]
+
+    tests -->|On Pull Request| cdk-diff[CDK Diff Backend]
+
+
+```
+
+#### UI
+
+- **UI Code Quality Check**: Validates frontend code using linting tools.
+- **Build UI**:
+  - On pull requests: Performs infrastructure difference checks (`CDK UI Diff`).
+  - On pushes to main: Deploys static files to an S3 bucket (`CDK Deploy UI`).
+
+#### Backend
+
+- **Backend Code Quality Check**: Runs tools like `mypy` and `flake8` to ensure code standards.
+- **Run Backend Tests**: Executes Django unit tests to verify functionality.
+- **Build and Push Docker Image**: On main branch pushes, builds and pushes the Docker image.
+- **CDK Backend Deployment**: Deploys backend infrastructure using AWS CDK.
+
+### Conditional Execution
+
+- **CDK Diff Jobs**: Display infrastructural changes on pull requests.
+- **Deploy Jobs**: Triggered on main branch pushes to update live environments.
+
+This streamlined CI/CD approach ensures that all parts of our system maintain high integrity and are ready for production deployment.
+
 - **API backend:** A Django application with endpoints to convert numbers into words.
 - **Frontend:** A Vue/Nuxt application that interacts with the Django API.
 - **Infrastructure:** CDK scripts for deploying the application on AWS.

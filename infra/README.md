@@ -111,3 +111,17 @@ This stack manages the deployment of the frontend static files to an Amazon S3 b
 - Ensure that the AWS region and account settings are correct before deploying.
 - Consider the AWS service costs associated with deploying these resources.
 - Customize environment variables and other settings as needed to fit the specific requirements of the Trellis-Law project.
+
+## Next Steps
+
+### Integration of AWS CloudFront
+
+To improve the delivery of static content from S3, we plan to integrate AWS CloudFront. This will serve as a CDN (Content Delivery Network) to cache and distribute the frontend assets more efficiently across global locations, reducing latency and enhancing user experience.
+
+### RDS PostgreSQL Instance
+
+We aim to incorporate an Amazon RDS PostgreSQL instance to provide a scalable, secure, and durable database solution for the backend. This will facilitate handling higher volumes of data with improved performance compared to traditional database setups.
+
+### AWS Secrets Manager
+
+To enhance security, we will utilize AWS Secrets Manager for managing sensitive information such as database credentials and API keys. This integration will help automate the process of rotating, managing, and retrieving secrets throughout their lifecycle, ensuring our application's sensitive data is protected.
