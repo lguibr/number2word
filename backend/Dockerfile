@@ -14,7 +14,7 @@ RUN pip install --no-cache-dir -r requirements/prod.txt
 EXPOSE 8000
 
 # Define environment variables
-ENV DJANGO_SETTINGS_MODULE=server.conf.prod
+ENV DJANGO_SETTINGS_MODULE=backend.conf.prod
 
 # Use an entrypoint script to manage migration commands and start the server
 COPY entrypoint.sh /usr/src/app/

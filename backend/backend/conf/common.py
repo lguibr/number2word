@@ -28,9 +28,11 @@ MIDDLEWARE = [
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
 ]
 
-ROOT_URLCONF = "server.urls"
+ROOT_URLCONF = "backend.urls"
 
-THIRD_PARTY_APPS: list[str] = ["corsheaders"]
+THIRD_PARTY_APPS: list[str] = [
+    "corsheaders",
+]
 
 APPS: list[str] = ["number2word"]
 
@@ -39,6 +41,8 @@ INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS + APPS
 TEMPLATES = [
     {
         "BACKEND": "django.template.backends.django.DjangoTemplates",
+        "DIRS": [],  # Other directories can be added here.
+        "APP_DIRS": True,
         "OPTIONS": {
             "context_processors": [
                 "django.template.context_processors.debug",
@@ -50,7 +54,7 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = "server.wsgi.application"
+WSGI_APPLICATION = "backend.wsgi.application"
 
 
 # Password validation

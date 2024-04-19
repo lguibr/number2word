@@ -1,4 +1,6 @@
 # -*- coding: utf-8 -*-
+import decimal
+import re
 from typing import List, Union
 
 from number2word.constants import (
@@ -13,21 +15,18 @@ from number2word.constants import (
 )
 
 
+def convert_to_full_decimal(num_str: str) -> str:
+    if "e" in num_str or "E" in num_str:
+        num_str = f"{decimal.Decimal(num_str):f}"
+    return num_str
+
+
 def number_to_words(number: Union[int, float, str]) -> str:
-    """Converts a numeric value to its word representation.
-
-    Args:
-        number: The number to convert, as an integer, float, or string.
-
-    Returns:
-        The word representation of the number.
-
-    Raises:
-        ValueError: If the input is not a valid number.
-        NumberOutOfRangeError: If the number is outside the supported range.
-    """
-
     original_number = str(number).strip().replace(",", "")
+    original_number = convert_to_full_decimal(
+        original_number
+    )  # Convert scientific notation
+
     if not VALID_NUMBER.match(original_number):
         raise ValueError(f"Invalid input: {number}")
 
@@ -40,7 +39,6 @@ def number_to_words(number: Union[int, float, str]) -> str:
     if DECIMAL_POINT.search(original_number):
         integer_part, decimal_part = original_number.split(".")
 
-        # Check if all decimals are zero
         if all(digits == "0" for digits in decimal_part):
             return sign + convert_integer_to_words(integer_part)
         else:
@@ -55,24 +53,9 @@ def number_to_words(number: Union[int, float, str]) -> str:
 
 
 def convert_integer_to_words(string_number: str) -> str:
-    """Converts an integer string to its word representation.
-
-    Args:
-        number: The integer string to convert.
-
-    Returns:
-        The word representation of the integer.
-
-    Raises:
-        NumberOutOfRangeError: If the number is outside the supported range.
-    """
-    # Check if the input is a valid integer string
-    if not string_number.isdigit():
-        raise ValueError(
-            f"Invalid input: {string_number}. Expected an integer string.",
-        )
-
     number = string_number.lstrip("0") or "0"
+    if not re.fullmatch(r"-?\d+", string_number):
+        raise ValueError("Input must be an integer.")
     chunks: List[str] = [match[0] for match in DIGIT_GROUP.findall(number)]
 
     if number == "0":
@@ -90,15 +73,6 @@ def convert_integer_to_words(string_number: str) -> str:
 
 
 def convert_three_digit_to_words(string_number: str) -> str:
-    """Converts a three-digit number string to its word representation.
-
-    Args:
-        number: The three-digit number string to convert.
-
-    Returns:
-        The word representation of the three-digit number.
-    """
-
     number = f"{int(string_number):03d}"
     hundreds, tens, units = map(int, number)
     words = []

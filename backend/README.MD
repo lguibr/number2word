@@ -18,7 +18,7 @@ To get this project up and running locally on your machine:
 
    ```
    git clone git@github.com:lguibr/trellis-law.git
-   cd trellis-law/server
+   cd trellis-law/backend
    ```
 
 2. **Build the Docker container**:
@@ -84,12 +84,12 @@ For local development, follow these steps:
 ## Files and Directories
 
 - **`manage.py` and `manage.prod.py`**: Entry points for Django's administrative tasks for development and production.
-- **`server/` directory**: Contains WSGI and ASGI configurations for different environments, URL routes, and settings split across common, dev, and prod modules.
+- **`backend/` directory**: Contains WSGI and ASGI configurations for different environments, URL routes, and settings split across common, dev, and prod modules.
 - **`number2word/` directory**: Houses the Django app for number conversion logic, including views, URL mappings, tests, and utility modules.
 
 ## Deployment
 
-Before deploying the application, ensure that all necessary environment variables are set. These variables configure the application settings for production according to `server/conf/prod.py`.
+Before deploying the application, ensure that all necessary environment variables are set. These variables configure the application settings for production according to `backend/conf/prod.py`.
 
 ### Deploying with Docker
 
@@ -116,7 +116,7 @@ This will start the server bound to port 8000 of your host, making the applicati
 For environments where Docker is not used, follow these steps to manually set up and run the server using Gunicorn and Uvicorn:
 
 1. **Set environment variables**:
-   Define all required production environment variables as specified in `server/conf/prod.py`.
+   Define all required production environment variables as specified in `backend/conf/prod.py`.
 
 2. **Install dependencies**:
 
@@ -126,7 +126,7 @@ For environments where Docker is not used, follow these steps to manually set up
 
 3. **Run the ASGI server using Gunicorn**:
    ```
-   gunicorn server.asgi:application -w 4 -k uvicorn.workers.UvicornWorker --bind 0.0.0.0:8000
+   gunicorn backend.asgi:application -w 4 -k uvicorn.workers.UvicornWorker --bind 0.0.0.0:8000
    ```
 
 This approach starts the server with four workers, suitable for handling production traffic using ASGI.
