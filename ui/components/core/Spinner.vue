@@ -1,9 +1,9 @@
 <template>
-  <div class="loader"></div>
+  <div class="loader" />
 </template>
 
 <script lang="ts">
-export default { name: 'Spinner' }
+export default { name: "Spinner" };
 </script>
 
 <style scoped>
@@ -24,15 +24,24 @@ export default { name: 'Spinner' }
 
 @keyframes l3 {
   25% {
-    background-position: 0 0, 100% 100%, 100% calc(100% - 5px);
+    background-position:
+      0 0,
+      100% 100%,
+      100% calc(100% - 5px);
   }
 
   50% {
-    background-position: 0 100%, 100% 100%, 0 calc(100% - 5px);
+    background-position:
+      0 100%,
+      100% 100%,
+      0 calc(100% - 5px);
   }
 
   75% {
-    background-position: 0 100%, 100% 0, 100% 5px;
+    background-position:
+      0 100%,
+      100% 0,
+      100% 5px;
   }
 }
 </style>

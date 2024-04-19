@@ -5,7 +5,7 @@
         <div class="text-display">
           {{ copyText }}
           <v-btn icon class="copy">
-            <v-icon @click="copyToClipboard" icon="mdi-content-copy"></v-icon>
+            <v-icon icon="mdi-content-copy" @click="copyToClipboard" />
           </v-btn>
         </div>
       </v-col>
@@ -18,23 +18,26 @@ export default {
   props: {
     copyText: {
       type: String,
-      required: true
+      required: true,
     },
   },
   methods: {
     notifyCopy() {
-      const { $bus } = useNuxtApp()
-      $bus.$emit('notify', { message: "Copied", type: "success" })
+      const { $bus } = useNuxtApp();
+      $bus.$emit("notify", { message: "Copied", type: "success" });
     },
     copyToClipboard() {
       if (navigator.clipboard && window.isSecureContext) {
-        navigator.clipboard.writeText(this.copyText).then(() => {
-          this.notifyCopy()
-        }, () => {
-          alert('Failed to copy text.');
-        });
+        navigator.clipboard.writeText(this.copyText).then(
+          () => {
+            this.notifyCopy();
+          },
+          () => {
+            alert("Failed to copy text.");
+          },
+        );
       } else {
-        let textArea = document.createElement("textarea");
+        const textArea = document.createElement("textarea");
         textArea.value = this.copyText;
         textArea.style.position = "fixed";
         document.body.appendChild(textArea);
@@ -42,16 +45,16 @@ export default {
         textArea.select();
 
         try {
-          document.execCommand('copy');
-          this.notifyCopy()
+          document.execCommand("copy");
+          this.notifyCopy();
         } catch (err) {
-          alert('Failed to copy text.');
+          alert("Failed to copy text.");
         }
 
         document.body.removeChild(textArea);
       }
-    }
-  }
+    },
+  },
 };
 </script>
 

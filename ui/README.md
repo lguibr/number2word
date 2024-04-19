@@ -1,75 +1,60 @@
-# Nuxt 3 Minimal Starter
+# Trellis-Law UI Web App
 
-Look at the [Nuxt 3 documentation](https://nuxt.com/docs/getting-started/introduction) to learn more.
+This Vue/Nuxt/Vuetify web app converts numbers to words. It's built for efficiency with front-end validations and snappy page transitions that keep the UI responsive and interactive.
 
-## Setup
+![Gif of app running](./../assets/trellis-ui-showcase.gif)
 
-Make sure to install the dependencies:
+## Key Pages
 
-```bash
-# npm
-npm install
+### Home Page
 
-# pnpm
-pnpm install
+- **Form**: Users can submit numbers. Valid entries trigger a spinner for 5 seconds as the system processes the request.
+- **Error Handling**: Errors from invalid input or backend issues are displayed with guidance for correction or re-submission.
 
-# yarn
-yarn install
+### Result Page
 
-# bun
-bun install
+- **Display**: Shows the number in words.
+- **Clipboard**: An option to copy the text with a confirmation via snackbar.
+
+## Features
+
+- **Persistent UI Components**: Snackbar, Modal, and Spinner enhance the UX during navigation.
+- **Static Generation**: Employs Nuxt's static generation for faster loading and SEO benefits.
+
+## Structure
+
+```
+/ui
+|-- components/
+|   |-- core/
+|   |   |-- Card.vue
+|   |   |-- Logo.vue
+|   |   |-- Modal.vue
+|   |   |-- Spinner.vue
+|   |-- home/
+|   |   |-- Form.vue
+|   |   |-- View.vue
+|   |-- result/
+|   |   |-- View.vue
+|   |   |-- CopyDisplay.vue
+|-- layouts/
+|   |-- default.vue
+|-- pages/
+|   |-- index.vue
+|   |-- result/
+|   |   |-- [number].vue
+|-- plugins/
+|   |-- vuetify.ts
+|   |-- useEmitter.js
+|-- nuxt.config.js
 ```
 
-## Development Server
+## Usage
 
-Start the development server on `http://localhost:3000`:
+1. **Setup**: Install dependencies with `npm install`.
+2. **Development**: Start the server with `npm run dev`.
+3. **Production**: Build with `npm run build` and preview with `npm run preview`.
 
-```bash
-# npm
-npm run dev
+## Contributing
 
-# pnpm
-pnpm run dev
-
-# yarn
-yarn dev
-
-# bun
-bun run dev
-```
-
-## Production
-
-Build the application for production:
-
-```bash
-# npm
-npm run build
-
-# pnpm
-pnpm run build
-
-# yarn
-yarn build
-
-# bun
-bun run build
-```
-
-Locally preview production build:
-
-```bash
-# npm
-npm run preview
-
-# pnpm
-pnpm run preview
-
-# yarn
-yarn preview
-
-# bun
-bun run preview
-```
-
-Check out the [deployment documentation](https://nuxt.com/docs/getting-started/deployment) for more information.
+Contribute by submitting pull requests or reporting issues. [View license here](./../LICENSE).

@@ -1,8 +1,8 @@
 <template>
-  <View />
+  <ResultView />
 </template>
 
-<script >
-import View from "./../../components/result/View.vue"
-export default { components: { View } };
+<script>
+import ResultView from "./../../components/result/View.vue";
+export default { components: { ResultView } };
 </script>

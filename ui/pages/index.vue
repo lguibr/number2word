@@ -1,9 +1,8 @@
 <template>
-  <View></View>
+  <HomeView />
 </template>
 
 <script>
-import View from "./../components/home/View.vue"
-export default { components: { View } };
+import HomeView from "./../components/home/View.vue";
+export default { components: { HomeView } };
 </script>
-

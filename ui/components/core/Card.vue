@@ -1,11 +1,11 @@
 <template>
   <v-card>
-    <template v-slot:title>
+    <template #title>
       <span class="title">{{ title }}</span>
     </template>
 
     <v-card-text>
-      <slot></slot>
+      <slot />
     </v-card-text>
   </v-card>
 </template>
@@ -15,17 +15,17 @@ export default {
   props: {
     title: {
       type: String,
-      default: "Default Card Value"
-    }
-  }
-}
-</script> 
+      default: "Default Card Value",
+    },
+  },
+};
+</script>
 
 <style scoped>
 .title {
   font-weight: bold;
   width: 100%;
   justify-content: center;
-  padding: .5em;
+  padding: 0.5em;
 }
 </style>
