@@ -15,7 +15,7 @@ export class UiAppDeploymentStack extends cdk.Stack {
 
     // Deploy files from the local 'build' directory to the S3 bucket
     new s3deploy.BucketDeployment(this, "DeployUiApp", {
-      sources: [s3deploy.Source.asset("./../../ui/.output/public")],
+      sources: [s3deploy.Source.asset("./../ui/.output/public/")],
       destinationBucket: bucket,
     });
 
