@@ -135,4 +135,4 @@ jobs:
         run: |
           cd infra
           npm ci
-          npx cdk deploy --require-approval never
+          npx cdk deploy --require-approval never --all
