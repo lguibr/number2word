@@ -5,7 +5,9 @@ export default defineNuxtConfig({
   },
   runtimeConfig: {
     public: {
-      backed_base_url: process.env.BACKEND_BASE_URL,
+      backed_base_url:
+        process.env.BACKEND_BASE_URL ??
+        "http://infras-djang-phu6uswnjk0h-891179164.us-east-1.elb.amazonaws.com",
     },
   },
   ssr: false,

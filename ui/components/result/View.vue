@@ -43,6 +43,8 @@ export default {
       let numInWords;
       let errorMessage;
       const config = useRuntimeConfig();
+      console.log({ baseUrl: config.public.backed_base_url });
+
       await useFetch(`/num_to_english/${number}`, {
         baseURL: config.public.backed_base_url,
         method: "get",
