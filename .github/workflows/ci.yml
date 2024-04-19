@@ -9,20 +9,16 @@ on:
 jobs:
   code-quality:
     runs-on: ubuntu-latest
-
     steps:
       - uses: actions/checkout@v3
-
       - name: Set up Python
         uses: actions/setup-python@v4
         with:
           python-version: 3.11
-
       - name: Install dependencies
         run: |
           python -m pip install --upgrade pip
           pip install -r server/requirements/dev.txt
-
       - name: Run code checks
         run: |
           cd server
@@ -43,24 +39,25 @@ jobs:
         run: |
           cd ui
           npm run generate
+      - name: Upload public directory as artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: public-directory
+          path: ui/.outputs/public
 
   tests:
     needs: code-quality
     runs-on: ubuntu-latest
-
     steps:
       - uses: actions/checkout@v3
-
       - name: Set up Python
         uses: actions/setup-python@v4
         with:
           python-version: 3.11
-
       - name: Install dependencies
         run: |
           python -m pip install --upgrade pip
           pip install -r server/requirements/dev.txt
-
       - name: Run tests
         env:
           SECRET_KEY: ${{ secrets.SECRET_KEY }}
@@ -72,16 +69,13 @@ jobs:
     needs: tests
     if: github.event_name == 'push' && github.ref == 'refs/heads/main'
     runs-on: ubuntu-latest
-
     steps:
       - uses: actions/checkout@v3
-
       - name: Login to GitHub Container Registry
         uses: docker/login-action@v3
         with:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKER_PASSWORD }}
-
       - name: Build and push Docker image
         uses: docker/build-push-action@v4
         with:
@@ -93,20 +87,21 @@ jobs:
     if: github.event_name == 'pull_request'
     runs-on: ubuntu-latest
     needs: [build-ui]
-
     steps:
       - uses: actions/checkout@v3
-
+      - name: Download public directory
+        uses: actions/download-artifact@v3
+        with:
+          name: public-directory
+          path: ui/.outputs/public
       - name: Configure AWS credentials
         uses: aws-actions/configure-aws-credentials@v2
         with:
           aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-region: ${{ secrets.AWS_REGION }}
-
       - name: Install CDK
         run: npm install -g aws-cdk
-
       - name: CDK diff
         env:
           AWS_ACCOUNT: ${{ secrets.AWS_ACCOUNT }}
@@ -119,20 +114,21 @@ jobs:
     needs: [docker-push, build-ui]
     if: github.event_name == 'push' && github.ref == 'refs/heads/main'
     runs-on: ubuntu-latest
-
     steps:
       - uses: actions/checkout@v3
-
+      - name: Download public directory
+        uses: actions/download-artifact@v3
+        with:
+          name: public-directory
+          path: ui/.outputs/public
       - name: Configure AWS credentials
         uses: aws-actions/configure-aws-credentials@v2
         with:
           aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-region: ${{ secrets.AWS_REGION }}
-
       - name: Install CDK
         run: npm install -g aws-cdk
-
       - name: Deploy with CDK
         env:
           AWS_ACCOUNT: ${{ secrets.AWS_ACCOUNT }}
