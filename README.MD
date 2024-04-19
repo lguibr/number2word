@@ -6,6 +6,34 @@ This repository hosts a full-stack application designed to convert numeric value
 
 ### Components
 
+```mermaid
+
+
+graph TB
+    subgraph infra[Infrastructure]
+        CDK[CDK Setup]
+    end
+
+    subgraph ui[UI Web App]
+        UI[User Interface]
+    end
+
+    subgraph api[Backend Server]
+        API[API Server]
+    end
+
+    API -->|Returns words| UI
+    CDK -->|Provisions| ui
+    CDK -->|Provisions| api
+    UI -->|Sends number| API
+
+   style infra fill:#f9d5e5,stroke:#b71c1c,stroke-width:2px
+   style ui fill:#d1c4e9,stroke:#6a1b9a,stroke-width:2px
+   style api fill:#c8e6c9,stroke:#2e7d32,stroke-width:2px
+
+
+```
+
 - **API backend:** A Django application with endpoints to convert numbers into words.
 - **Frontend:** A Vue/Nuxt application that interacts with the Django API.
 - **Infrastructure:** CDK scripts for deploying the application on AWS.

@@ -38,6 +38,8 @@ You should now have the application running and accessible at `http://localhost:
 
 Access the API documentation and interact with the API through the Swagger UI:
 
+![Swagger Screen Shoot](./../assets/swaggerui-screenshot.png)
+
 - **Swagger JSON**: http://localhost:8000/swagger/
 - **Swagger UI**: http://localhost:8000/swagger-ui/
 
