@@ -111,7 +111,7 @@ jobs:
           npx cdk diff
 
   cdk-deploy:
-    needs: [docker-push, build-ui]
+    needs: [docker-push]
     if: github.event_name == 'push' && github.ref == 'refs/heads/main'
     runs-on: ubuntu-latest
     steps:
@@ -135,4 +135,31 @@ jobs:
         run: |
           cd infra
           npm ci
-          npx cdk deploy --require-approval never --all
+          npx cdk deploy --require-approval never InfraStack
+
+  cdk-deploy-ui:
+    needs: [build-ui]
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Download public directory
+        uses: actions/download-artifact@v3
+        with:
+          name: public-directory
+          path: ./ui/.output/public
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v2
+        with:
+          aws-access-key-id: ${{ secrets.AWS_UI_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_UI_SECRET_ACCESS_KEY }}
+          aws-region: ${{ secrets.AWS_REGION }}
+      - name: Install CDK
+        run: npm install -g aws-cdk
+      - name: Deploy with CDK
+        env:
+          AWS_ACCOUNT: ${{ secrets.AWS_ACCOUNT }}
+        run: |
+          cd infra
+          npm ci
+          npx cdk deploy --require-approval never UiAppDeploymentStack

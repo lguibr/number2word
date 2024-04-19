@@ -30,5 +30,6 @@ const app = new cdk.App();
 new UiAppDeploymentStack(app, "UiAppDeploymentStack", {
   env: {
     region: process.env.AWS_REGION,
-  }, // specify your preferred AWS region
+    account: process.env.AWS_UI_ACCOUNT,
+  },
 });
