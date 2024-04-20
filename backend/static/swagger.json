@@ -1,7 +1,7 @@
 {
   "swagger": "2.0",
   "info": {
-    "version": "1.0.0",
+    "version": "1.0.1",
     "title": "Number to English Converter API",
     "description": "API to convert numbers to words in English."
   },
