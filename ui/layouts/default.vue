@@ -50,7 +50,7 @@ export default {
   name: "DefaultLayout",
   components: { Logo, Modal, Spinner },
   data: () => ({
-    darkTheme: false,
+    darkTheme: true,
     showModal: false,
     showNotification: false,
     notificationType: "success",
