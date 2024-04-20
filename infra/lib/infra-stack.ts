@@ -29,11 +29,11 @@ export class InfraStack extends cdk.Stack {
           desiredCount: 1,
           taskImageOptions: {
             environment: {
-              DEBUG: "1",
+              DEBUG: "0",
               DJANGO_ALLOWED_HOSTS: "*",
-              SECRET_KEY: process.env.SECRET_KEY ?? "super-secret",
-              DB_USER: process.env.DB_USER ?? "lguibr",
-              DB_PASSWORD: process.env.DB_PASSWORD ?? "lguibr",
+              SECRET_KEY: process.env.SECRET_KEY!,
+              DB_USER: process.env.DB_USER!,
+              DB_PASSWORD: process.env.DB_PASSWORD!,
             },
             image: ecs.ContainerImage.fromRegistry(
               "lguibr/django-trellis-example:latest"

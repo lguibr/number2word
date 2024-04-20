@@ -57,7 +57,21 @@ export class UiAppDeploymentStack extends cdk.Stack {
           allowedMethods: cloudfront.AllowedMethods.ALLOW_GET_HEAD_OPTIONS,
           cachedMethods: cloudfront.CachedMethods.CACHE_GET_HEAD,
           compress: true,
+          functionAssociations: [
+            {
+              eventType: cloudfront.FunctionEventType.VIEWER_REQUEST,
+              function: this.createViewerRequestFunction(),
+            },
+          ],
         },
+        errorResponses: [
+          {
+            httpStatus: 404,
+            responseHttpStatus: 200,
+            responsePagePath: "/index.html",
+            ttl: cdk.Duration.seconds(0),
+          },
+        ],
         defaultRootObject: "index.html",
         domainNames: ["number2word.luisguilher.me"],
         certificate: certificate,
@@ -74,6 +88,23 @@ export class UiAppDeploymentStack extends cdk.Stack {
     new cdk.CfnOutput(this, "DistributionURL", {
       value: `https://${distribution.distributionDomainName}`,
       description: "The URL of the website via CloudFront",
+    });
+  }
+
+  private createViewerRequestFunction(): cloudfront.Function {
+    return new cloudfront.Function(this, "RedirectFunction", {
+      code: cloudfront.FunctionCode.fromInline(
+        `function handler(event) {
+          var request = event.request;
+          var uri = request.uri;
+          if (uri.endsWith('/')) {
+            request.uri += 'index.html';
+          } else if (!uri.includes('.')) {
+            request.uri += '/index.html';
+          }
+          return request;
+        }`
+      ),
     });
   }
 }
