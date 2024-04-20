@@ -1,7 +1,3 @@
-Here's the updated README with details about integrating AWS CloudFront into your project infrastructure for the Trellis-Law project. This update includes how CloudFront will serve static content and manage API requests efficiently.
-
----
-
 # Infrastructure Trellis-Law Project
 
 This repository contains the AWS Cloud Development Kit (CDK) infrastructure code located in the `infra` folder. It is designed to deploy and manage the cloud resources necessary for both the frontend and backend components of the Trellis-Law project.
