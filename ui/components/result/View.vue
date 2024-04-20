@@ -27,13 +27,9 @@ export default {
   methods: {
     notifyError(error) {
       const { $bus } = useNuxtApp();
-      console.log({ error });
-
       const defaultError =
         "Unknown error please enter in contact with the administrator ";
       const message = error ? error : defaultError;
-      console.log({ message });
-
       $bus.$emit("notify", { message, type: "error" });
     },
     async fetchNumToWords() {
@@ -43,7 +39,6 @@ export default {
       let numInWords;
       let errorMessage;
       const config = useRuntimeConfig();
-      console.log({ baseUrl: config.public.backed_base_url });
       const baseURL = config.public.backed_base_url
       await useFetch(`${baseURL}/num_to_english/${number}`, {
         server: false,

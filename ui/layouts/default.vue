@@ -1,19 +1,15 @@
 <template>
   <v-theme-provider :theme="theme" with-background>
+
     <Head>
       <Title>Number 2 Words</Title>
-      <Meta
-        name="description"
-        content="A web app that converts numbers to english words"
-      />
+      <Meta name="description" content="A web app that converts numbers to english words" />
     </Head>
 
     <v-app @modal="setLoading">
       <v-app-bar app>
         <Logo size="50" class="clickable" @click="goHome" />
-        <v-toolbar-title class="clickable" @click="goHome"
-          >Number to Words</v-toolbar-title
-        >
+        <v-toolbar-title class="clickable" @click="goHome">Number to Words</v-toolbar-title>
         <v-icon class="icon" icon="mdi-weather-sunny" end />
         <div class="vertical_align">
           <v-switch v-model="darkTheme" />
@@ -28,11 +24,7 @@
           <Modal v-if="showModal" @close="showModal = false">
             <Spinner />
           </Modal>
-          <v-snackbar
-            v-model="showNotification"
-            :timeout="5000"
-            :color="notificationType"
-          >
+          <v-snackbar v-model="showNotification" :timeout="5000" :color="notificationType">
             {{ getnotificationMessage() }}
           </v-snackbar>
         </v-container>
@@ -74,7 +66,6 @@ export default {
     const { $bus } = useNuxtApp();
     $bus.$on("loading", () => this.setLoading());
     $bus.$on("notify", ({ message, type }) => {
-      console.log("notify!");
       this.showNotification = true;
       this.notification = message;
       this.notificationType = type;

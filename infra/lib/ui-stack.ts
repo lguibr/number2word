@@ -52,6 +52,7 @@ export class UiAppDeploymentStack extends cdk.Stack {
       {
         defaultBehavior: {
           origin: new origins.S3Origin(bucket),
+          viewerProtocolPolicy: cloudfront.ViewerProtocolPolicy.ALLOW_ALL,
           allowedMethods: cloudfront.AllowedMethods.ALLOW_GET_HEAD_OPTIONS,
           cachedMethods: cloudfront.CachedMethods.CACHE_GET_HEAD,
           compress: true,
