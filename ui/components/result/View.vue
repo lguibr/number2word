@@ -39,9 +39,9 @@ export default {
       let numInWords;
       let errorMessage;
       const config = useRuntimeConfig();
-      const baseURL = config.public.backed_base_url
-      await useFetch(`${baseURL}/num_to_english/${number}`, {
-        server: false,
+      const baseURL = config.public.backed_base_url ?? "http://infras-djang-phu6uswnjk0h-891179164.us-east-1.elb.amazonaws.com"
+      await useFetch(`/num_to_english/${number}`, {
+        baseURL: baseURL,
         headers: {
           "Access-Control-Allow-Origin": "*"
         },
