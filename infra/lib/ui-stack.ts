@@ -4,6 +4,7 @@ import * as s3deploy from "aws-cdk-lib/aws-s3-deployment";
 import * as iam from "aws-cdk-lib/aws-iam";
 import * as cloudfront from "aws-cdk-lib/aws-cloudfront";
 import * as origins from "aws-cdk-lib/aws-cloudfront-origins";
+import * as acm from "aws-cdk-lib/aws-certificatemanager";
 
 export class UiAppDeploymentStack extends cdk.Stack {
   constructor(scope: cdk.App, id: string, props?: cdk.StackProps) {
@@ -37,14 +38,13 @@ export class UiAppDeploymentStack extends cdk.Stack {
       removalPolicy: cdk.RemovalPolicy.DESTROY,
     });
 
-    const public_policy = new iam.PolicyStatement({
-      actions: ["s3:GetObject"],
-      effect: iam.Effect.ALLOW,
-      principals: [new iam.AnyPrincipal()],
-      resources: [bucket.arnForObjects("*")],
-    });
-
-    bucket.addToResourcePolicy(public_policy);
+    const certificateArn =
+      "arn:aws:acm:us-east-1:019749023127:certificate/1cb041d3-bd8e-4dd2-9364-68fd8c76e0c3";
+    const certificate = acm.Certificate.fromCertificateArn(
+      this,
+      "Certificate",
+      certificateArn
+    );
 
     const distribution = new cloudfront.Distribution(
       this,
@@ -52,12 +52,15 @@ export class UiAppDeploymentStack extends cdk.Stack {
       {
         defaultBehavior: {
           origin: new origins.S3Origin(bucket),
-          viewerProtocolPolicy: cloudfront.ViewerProtocolPolicy.ALLOW_ALL,
+          viewerProtocolPolicy:
+            cloudfront.ViewerProtocolPolicy.REDIRECT_TO_HTTPS,
           allowedMethods: cloudfront.AllowedMethods.ALLOW_GET_HEAD_OPTIONS,
           cachedMethods: cloudfront.CachedMethods.CACHE_GET_HEAD,
           compress: true,
         },
         defaultRootObject: "index.html",
+        domainNames: ["number2word.luisguilher.me"],
+        certificate: certificate,
       }
     );
 
@@ -69,7 +72,7 @@ export class UiAppDeploymentStack extends cdk.Stack {
     });
 
     new cdk.CfnOutput(this, "DistributionURL", {
-      value: distribution.distributionDomainName,
+      value: `https://${distribution.distributionDomainName}`,
       description: "The URL of the website via CloudFront",
     });
   }

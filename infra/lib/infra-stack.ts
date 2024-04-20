@@ -13,7 +13,7 @@ export class InfraStack extends cdk.Stack {
     const cluster = new ecs.Cluster(this, "DjangoCluster", { vpc });
 
     const certificateArn =
-      "arn:aws:acm:us-east-1:019749023127:certificate/1d721b27-f985-49d9-a67b-199c7edfa002";
+      "arn:aws:acm:us-east-1:019749023127:certificate/8b264eca-62d5-4cb0-bec7-7d201e916397";
     const certificate = acm.Certificate.fromCertificateArn(
       this,
       "Certificate",
@@ -63,7 +63,6 @@ export class InfraStack extends cdk.Stack {
       value: `https://${fargateService.loadBalancer.loadBalancerDnsName}`,
       description: "URL to access the Django application via HTTPS",
     });
-    
   }
 }
 

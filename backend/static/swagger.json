@@ -5,9 +5,9 @@
     "title": "Number to English Converter API",
     "description": "API to convert numbers to words in English."
   },
-  "host": "InfraS-Djang-PhU6UsWNjk0H-891179164.us-east-1.elb.amazonaws.com",
+  "host": "word2vector.luisguilher.me",
   "basePath": "/",
-  "schemes": ["http"],
+  "schemes": ["https"],
   "paths": {
     "/num_to_english/{number}": {
       "get": {

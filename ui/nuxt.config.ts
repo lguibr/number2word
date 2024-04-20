@@ -7,7 +7,7 @@ export default defineNuxtConfig({
     public: {
       backed_base_url:
         process.env.BACKEND_BASE_URL ??
-        "https://infras-djang-phu6uswnjk0h-891179164.us-east-1.elb.amazonaws.com",
+        "https://word2vector.luisguilher.me",
     },
   },
   ssr: false,
