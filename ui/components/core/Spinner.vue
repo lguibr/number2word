@@ -8,8 +8,8 @@ export default { name: "Spinner" };
 
 <style scoped>
 .loader {
-  width: 80vw;
-  height: 80vh;
+  width: 60vw;
+  height: 60vh;
   border: 5px solid #000;
   padding: 0 8px;
   box-sizing: border-box;
