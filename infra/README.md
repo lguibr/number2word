@@ -1,5 +1,7 @@
 # Infrastructure Trellis-Law Project
 
+![](https://github.com/lguibr/trellis-law/actions/workflows/ci.yml/badge.svg)
+
 This repository contains the AWS Cloud Development Kit (CDK) infrastructure code located in the `infra` folder. It is designed to deploy and manage the cloud resources necessary for both the frontend and backend components of the Trellis-Law project.
 
 ## Structure

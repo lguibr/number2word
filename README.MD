@@ -1,16 +1,6 @@
 # Trellis Law
 
-## CI/CD Status
-
-![UI Code Quality](https://github.com/lguibr/trellis-law/workflows/CI/badge.svg?branch=main&event=push&job=ui-code-quality)
-![Build UI](https://github.com/lguibr/trellis-law/workflows/CI/badge.svg?branch=main&event=push&job=build-ui)
-![Backend Code Quality](https://github.com/lguibr/trellis-law/workflows/CI/badge.svg?branch=main&event=push&job=code-quality)
-![Tests](https://github.com/lguibr/trellis-law/workflows/CI/badge.svg?branch=main&event=push&job=tests)
-![Docker Push](https://github.com/lguibr/trellis-law/workflows/CI/badge.svg?branch=main&event=push&job=docker-push)
-![CDK Diff](https://github.com/lguibr/trellis-law/workflows/CI/badge.svg?branch=main&event=pull_request&job=cdk-diff)
-![CDK UI Diff](https://github.com/lguibr/trellis-law/workflows/CI/badge.svg?branch=main&event=pull_request&job=cdk-ui-diff)
-![CDK Deploy](https://github.com/lguibr/trellis-law/workflows/CI/badge.svg?branch=main&event=push&job=cdk-deploy)
-![CDK Deploy UI](https://github.com/lguibr/trellis-law/workflows/CI/badge.svg?branch=main&event=push&job=cdk-deploy-ui)
+![](https://github.com/lguibr/trellis-law/actions/workflows/ci.yml/badge.svg)
 
 ## Quick Links 🚀
 

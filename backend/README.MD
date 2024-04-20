@@ -1,5 +1,7 @@
 # Trellis Law Server
 
+![](https://github.com/lguibr/trellis-law/actions/workflows/ci.yml/badge.svg)
+
 This project is a Django-based web application designed for number conversion to words. It includes a robust Docker setup, Mypy for static type checking, Pytest for testing, and is configured for both development and production environments.
 
 ## Prerequisites
@@ -13,6 +15,7 @@ Before you begin, ensure you have installed:
 ## Quick Start
 
 ### Structure
+
 ```
 /trellis-law
 |-- backend/
@@ -48,6 +51,7 @@ Before you begin, ensure you have installed:
 | |-- dev.txt
 | |-- prod.txt
 ```
+
 To get this project up and running locally on your machine:
 
 1. **Clone the repository**:
