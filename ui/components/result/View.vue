@@ -47,6 +47,7 @@ export default {
       const baseURL = config.public.backed_base_url
       await useFetch(`${baseURL}/num_to_english/${number}`, {
         baseURL: config.public.backed_base_url,
+        server: false,
         headers: {
           "Access-Control-Allow-Origin": "*"
         },
