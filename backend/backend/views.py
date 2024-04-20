@@ -9,11 +9,11 @@ from rest_framework.request import Request
 
 
 def swagger_view(request: Request) -> JsonResponse:
-    path = os.path.join(settings.BASE_DIR, "./static/swagger.json")
+    path = os.path.join(settings.BASE_DIR, "static", "swagger.json")
     with open(path, "r") as file:
         data = json.load(file)
     return JsonResponse(data)
 
 
 def swagger_ui_view(request: Request) -> HttpResponse:
-    return render(request, "./swagger_ui.html")
+    return render(request, "swagger_ui.html")

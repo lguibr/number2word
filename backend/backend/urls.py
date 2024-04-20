@@ -14,5 +14,5 @@ urlpatterns = [
     path("admin/", admin.site.urls),
     path("num_to_english/", include("number2word.urls")),
     path("swagger/", swagger_view, name="swagger"),
-    path("swagger-ui/", swagger_ui_view, name="swagger-ui"),
+    path("docs/", swagger_ui_view, name="swagger-ui"),
 ]

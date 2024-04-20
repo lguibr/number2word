@@ -1,7 +1,7 @@
 {
   "swagger": "2.0",
   "info": {
-    "version": "1.0.1",
+    "version": "2.0.0",
     "title": "Number to English Converter API",
     "description": "API to convert numbers to words in English."
   },
@@ -35,7 +35,31 @@
             }
           },
           "400": {
-            "description": "Invalid input"
+            "description": "Invalid input",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "success": { "type": "boolean" },
+                "error": {
+                  "type": "object",
+                  "properties": {
+                    "message": { "type": "string" },
+                    "type": { "type": "string" },
+                    "help": { "type": "string" }
+                  }
+                }
+              }
+            },
+            "examples": {
+              "application/json": {
+                "success": false,
+                "error": {
+                  "message": "🚫 Oops! It looks like your input ('123abc') isn't quite right. Please make sure it's a valid number. 👍",
+                  "type": "validation_error",
+                  "help": "Ensure that the input is a numerical value without any non-numeric characters."
+                }
+              }
+            }
           }
         }
       }
@@ -68,7 +92,31 @@
             }
           },
           "400": {
-            "description": "Invalid input or JSON data"
+            "description": "Invalid input or JSON data",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "success": { "type": "boolean" },
+                "error": {
+                  "type": "object",
+                  "properties": {
+                    "message": { "type": "string" },
+                    "type": { "type": "string" },
+                    "help": { "type": "string" }
+                  }
+                }
+              }
+            },
+            "examples": {
+              "application/json": {
+                "success": false,
+                "error": {
+                  "message": "🚫 Oops! It looks like your input ('(*&^%') isn't quite right. Please make sure it's a valid number. 👍",
+                  "type": "validation_error",
+                  "help": "Ensure that the input is a numerical value without any non-numeric characters."
+                }
+              }
+            }
           }
         }
       }
