@@ -18,8 +18,8 @@ export class InfraStack extends cdk.Stack {
         desiredCount: 1,
         taskImageOptions: {
           environment: {
-            DEBUG: "0",
-            DJANGO_ALLOWED_HOSTS: "* localhost 127.0.0.1 [::1]",
+            DEBUG: "1",
+            DJANGO_ALLOWED_HOSTS: "*",
             SECRET_KEY: process.env.SECRET_KEY ?? "super-secret",
             DB_USER: process.env.DB_USER ?? "lguibr",
             DB_PASSWORD: process.env.DB_PASSWORD ?? "lguibr",

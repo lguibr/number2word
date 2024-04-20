@@ -1,4 +1,4 @@
-import vuetify, { transformAssetUrls } from "vite-plugin-vuetify";
+import vuetify from "vite-plugin-vuetify";
 export default defineNuxtConfig({
   eslint: {
     checker: true,
@@ -25,11 +25,4 @@ export default defineNuxtConfig({
       });
     },
   ],
-  vite: {
-    vue: {
-      template: {
-        transformAssetUrls,
-      },
-    },
-  },
 });
