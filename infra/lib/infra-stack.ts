@@ -31,9 +31,9 @@ export class InfraStack extends cdk.Stack {
             environment: {
               DEBUG: "0",
               DJANGO_ALLOWED_HOSTS: "*",
-              SECRET_KEY: process.env.SECRET_KEY!,
-              DB_USER: process.env.DB_USER!,
-              DB_PASSWORD: process.env.DB_PASSWORD!,
+              SECRET_KEY: process.env.SECRET_KEY ?? "super-secret",
+              DB_USER: process.env.DB_USER ?? "lguibr",
+              DB_PASSWORD: process.env.DB_PASSWORD ?? "lguibr",
             },
             image: ecs.ContainerImage.fromRegistry(
               "lguibr/django-trellis-example:latest"
@@ -41,10 +41,19 @@ export class InfraStack extends cdk.Stack {
             containerPort: 8000,
           },
           publicLoadBalancer: true,
+          healthCheck: {
+            command: [
+              "CMD-SHELL",
+              "curl -f word2vector.luisguilher.me || exit 1",
+            ],
+            retries: 3,
+            startPeriod: cdk.Duration.seconds(15),
+            interval: cdk.Duration.seconds(30),
+            timeout: cdk.Duration.seconds(5),
+          },
         }
       );
 
-    // HTTPS listener with default action to forward to the ECS service's target group
     const httpsListener = fargateService.loadBalancer.addListener(
       "HttpsListener",
       {
