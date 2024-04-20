@@ -43,12 +43,13 @@ export default {
       let numInWords;
       let errorMessage;
       const config = useRuntimeConfig();
-      const baseUrl = config.public.backed_base_url
       console.log({ baseUrl: config.public.backed_base_url });
-      const url = `/num_to_english/${number}`
-      console.log({ url })
-
-      await useFetch(`${baseUrl}/num_to_english/${number}`, {
+      const baseURL = config.public.backed_base_url
+      await useFetch(`${baseURL}/num_to_english/${number}`, {
+        baseURL: config.public.backed_base_url,
+        headers: {
+          "Access-Control-Allow-Origin": "*"
+        },
         method: "get",
 
         onResponse({ response }) {
