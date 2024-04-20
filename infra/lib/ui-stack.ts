@@ -9,9 +9,8 @@ export class UiAppDeploymentStack extends cdk.Stack {
   constructor(scope: cdk.App, id: string, props?: cdk.StackProps) {
     super(scope, id, props);
 
-    // Create a new S3 bucket to hold the UI application
     const bucket = new s3.Bucket(this, "UiAppBucket", {
-      bucketName: `bucket-trellis-law-ui-adhoc`,
+      bucketName: "bucket-trellis-law-ui-adhoc",
       websiteIndexDocument: "index.html",
       publicReadAccess: true,
       objectOwnership: s3.ObjectOwnership.OBJECT_WRITER,
@@ -47,11 +46,6 @@ export class UiAppDeploymentStack extends cdk.Stack {
 
     bucket.addToResourcePolicy(public_policy);
 
-    new s3deploy.BucketDeployment(this, "DeployUiApp", {
-      sources: [s3deploy.Source.asset("./../ui/.output/public/")],
-      destinationBucket: bucket,
-    });
-
     const distribution = new cloudfront.Distribution(
       this,
       "UiAppDistribution",
@@ -67,6 +61,13 @@ export class UiAppDeploymentStack extends cdk.Stack {
         defaultRootObject: "index.html",
       }
     );
+
+    new s3deploy.BucketDeployment(this, "DeployUiApp", {
+      sources: [s3deploy.Source.asset("./../ui/.output/public/")],
+      destinationBucket: bucket,
+      distribution,
+      distributionPaths: ["/*"],
+    });
 
     new cdk.CfnOutput(this, "DistributionURL", {
       value: distribution.distributionDomainName,
