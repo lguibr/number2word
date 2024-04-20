@@ -2,6 +2,8 @@ import * as cdk from "aws-cdk-lib";
 import * as s3 from "aws-cdk-lib/aws-s3";
 import * as s3deploy from "aws-cdk-lib/aws-s3-deployment";
 import * as iam from "aws-cdk-lib/aws-iam";
+import * as cloudfront from "aws-cdk-lib/aws-cloudfront";
+import * as origins from "aws-cdk-lib/aws-cloudfront-origins";
 
 export class UiAppDeploymentStack extends cdk.Stack {
   constructor(scope: cdk.App, id: string, props?: cdk.StackProps) {
@@ -45,16 +47,30 @@ export class UiAppDeploymentStack extends cdk.Stack {
 
     bucket.addToResourcePolicy(public_policy);
 
-    // Deploy files from the local 'build' directory to the S3 bucket
     new s3deploy.BucketDeployment(this, "DeployUiApp", {
       sources: [s3deploy.Source.asset("./../ui/.output/public/")],
       destinationBucket: bucket,
     });
 
-    // Output the URL of the website
-    new cdk.CfnOutput(this, "SiteURL", {
-      value: bucket.bucketWebsiteUrl,
-      description: "The URL of the website",
+    const distribution = new cloudfront.Distribution(
+      this,
+      "UiAppDistribution",
+      {
+        defaultBehavior: {
+          origin: new origins.S3Origin(bucket),
+          viewerProtocolPolicy:
+            cloudfront.ViewerProtocolPolicy.REDIRECT_TO_HTTPS,
+          allowedMethods: cloudfront.AllowedMethods.ALLOW_GET_HEAD_OPTIONS,
+          cachedMethods: cloudfront.CachedMethods.CACHE_GET_HEAD,
+          compress: true,
+        },
+        defaultRootObject: "index.html",
+      }
+    );
+
+    new cdk.CfnOutput(this, "DistributionURL", {
+      value: distribution.distributionDomainName,
+      description: "The URL of the website via CloudFront",
     });
   }
 }

@@ -1,3 +1,7 @@
+Here's the updated README with details about integrating AWS CloudFront into your project infrastructure for the Trellis-Law project. This update includes how CloudFront will serve static content and manage API requests efficiently.
+
+---
+
 # Infrastructure Trellis-Law Project
 
 This repository contains the AWS Cloud Development Kit (CDK) infrastructure code located in the `infra` folder. It is designed to deploy and manage the cloud resources necessary for both the frontend and backend components of the Trellis-Law project.
@@ -24,14 +28,20 @@ graph LR
         subgraph S3 [S3 Bucket]
             NuxtJS[Nuxt.js Static Site]
         end
+
+        subgraph CF [CloudFront]
+            CloudFront
+        end
     end
 
-    User -->|Accesses static site| NuxtJS
-    User -->|Accesses Django app| LoadBalancer
-    LoadBalancer -->|Routes API request| Django
-    NuxtJS -->|Makes API calls to| LoadBalancer
+    User -->|Accesses static site| CloudFront
+    User -->|API requests| ELB
+    CloudFront -->|Serves static content from| NuxtJS
+    CloudFront -->|Routes API request| LoadBalancer
+    LoadBalancer -->|Routes to| Django
     Django -->|Processes and returns data| LoadBalancer
-    LoadBalancer -->|Sends response| NuxtJS
+    LoadBalancer -->|Sends response through| CloudFront
+
 
 
 ```
@@ -54,14 +64,15 @@ This stack is responsible for setting up the backend infrastructure on AWS, util
 
 ### 2. UiAppDeploymentStack (Frontend Application Deployment)
 
-This stack manages the deployment of the frontend static files to an Amazon S3 bucket configured for web hosting.
+This stack manages the deployment of the frontend static files to an Amazon S3 bucket and sets up CloudFront to serve these files and route API requests.
 
 **Key Components:**
 
 - **S3 Bucket**: Stores and serves the frontend static files with a configured website index document for SPA (Single Page Application) support.
+- **CloudFront Distribution**: Configures CloudFront to serve static content from S3 and route API requests to the backend load balancer.
 - **IAM Policy**: Ensures public read access to the S3 bucket.
 - **Bucket Deployment**: Facilitates the deployment process from local build directories to the S3 bucket.
-- **CfnOutput**: Provides the URL where the frontend application is accessible.
+- **CfnOutput**: Provides the URLs where the frontend application and API are accessible via CloudFront.
 
 ## Prerequisites
 
@@ -113,10 +124,6 @@ This stack manages the deployment of the frontend static files to an Amazon S3 b
 - Customize environment variables and other settings as needed to fit the specific requirements of the Trellis-Law project.
 
 ## Next Steps
-
-### Integration of AWS CloudFront
-
-To improve the delivery of static content from S3, we plan to integrate AWS CloudFront. This will serve as a CDN (Content Delivery Network) to cache and distribute the frontend assets more efficiently across global locations, reducing latency and enhancing user experience.
 
 ### RDS PostgreSQL Instance
 
