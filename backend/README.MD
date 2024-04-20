@@ -12,6 +12,42 @@ Before you begin, ensure you have installed:
 
 ## Quick Start
 
+### Structure
+```
+/trellis-law
+|-- backend/
+| |-- backend/
+| | |-- **init**.py
+| | |-- asgi.py
+| | |-- asgi.prod.py
+| | |-- wsgi.py
+| | |-- wsgi.prod.py
+| | |-- urls.py
+| | |-- views.py
+| | |-- settings/
+| | | |-- **init**.py
+| | | |-- common.py
+| | | |-- dev.py
+| | | |-- prod.py
+| |-- number2word/
+| | |-- **init**.py
+| | |-- apps.py
+| | |-- views.py
+| | |-- urls.py
+| | |-- serializers.py
+| | |-- models.py
+| | |-- converters.py
+| | |-- constants.py
+|-- manage.py
+|-- manage.prod.py
+|-- mypy.ini
+|-- Dockerfile
+|-- entrypoint.sh
+|-- requirements/
+| |-- base.txt
+| |-- dev.txt
+| |-- prod.txt
+```
 To get this project up and running locally on your machine:
 
 1. **Clone the repository**:
@@ -36,12 +72,12 @@ You should now have the application running and accessible at `http://localhost:
 
 ## API Documentation
 
-Access the API documentation and interact with the API through the Swagger UI:
+Access the API documentation and interact with the API through the Swagger UI deployed at [word2vector.luisguilher.me/docs](https://word2vector.luisguilher.me/docs). This link provides a visual interface for the API's endpoints, allowing for easy testing and exploration of its functionalities.
 
 ![Swagger Screen Shoot](./../assets/swaggerui-screenshot.png)
 
 - **Swagger JSON**: http://localhost:8000/swagger/
-- **Swagger UI**: http://localhost:8000/swagger-ui/
+- **Swagger UI**: http://localhost:8000/docs/
 
 These endpoints provide a visual interface for the API's endpoints, allowing for easy testing and exploration of its functionalities.
 

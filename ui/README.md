@@ -1,6 +1,7 @@
 # Trellis-Law UI Web App
 
-This Vue/Nuxt/Vuetify web app converts numbers to words. It's built for efficiency with front-end validations and snappy page transitions that keep the UI responsive and interactive. Access the current deploy at [link](https://dj1fxvjqor00d.cloudfront.net/)
+This Vue/Nuxt/Vuetify web app converts numbers to words. It's built for efficiency with front-end validations and snappy page transitions that keep the UI responsive and interactive.Access the latest deployment at [number2word.luisguilher.me](https://number2word.luisguilher.me).
+
 
 ![Gif of app running](./../assets/trellis-ui-showcase.gif)
 
