@@ -127,7 +127,7 @@ To begin using this project, follow these steps:
 - Django 5.X
 - Vue.js 3.x/Nuxt.js 2.x
 - AWS Account for deploying with CDK
-- Node.js 20.x+ for frontend development
+- Node.js 18.x+ for frontend development
 
 ## License
 
