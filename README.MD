@@ -129,21 +129,6 @@ To begin using this project, follow these steps:
 - AWS Account for deploying with CDK
 - Node.js 18.x+ for frontend development
 
-## Troubleshooting for Apple M1 Chip Issues
-
-If you're encountering installation or runtime errors on Apple M1 machines, such as missing modules or build failures, you may need to run Node.js under Rosetta 2. Here’s a quick fix:
-
-1. Switch to Rosetta emulation and reinstall Node.js:
-
-   ```bash
-   nvm uninstall 18
-   arch -x86_64 zsh
-   nvm install 18
-   nvm use 18
-   ```
-
-2. For more details on similar issues and solutions, refer to the discussion [here](https://github.com/motdotla/dotenv/issues/560#issuecomment-1029392300).
-
 ## License
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
