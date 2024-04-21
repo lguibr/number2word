@@ -27,9 +27,8 @@ export default {
       const maxNumber = new BigNumber("999999999999999999999999999999999");
       const numberSchema = z
         .string()
-        .nonempty({ message: "Number is required" })
         .transform((value) => new BigNumber(value))
-        .refine((num) => !num.isNaN(), { message: "Invalid number" })
+        .refine((num) => !num.isNaN(), { message: "Valid number is required" })
         .refine((num) => num.abs().lte(maxNumber), {
           message: `The absolute value must not exceed ${maxNumber.toString()}`,
         });
