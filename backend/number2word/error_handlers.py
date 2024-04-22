@@ -30,7 +30,7 @@ def validation_error(number: str | int | float) -> JsonResponse:
 
 def conversion_error(number: str | int | float, message: str) -> JsonResponse:
     """
-    Generate a 500 Internal Server Error for
+    Generate a 400 Internal Server Error for
     conversion failures with detailed feedback.
     """
     return JsonResponse(
@@ -49,5 +49,5 @@ def conversion_error(number: str | int | float, message: str) -> JsonResponse:
                 ),
             },
         },
-        status=status.HTTP_500_INTERNAL_SERVER_ERROR,
+        status=status.HTTP_400_BAD_REQUEST,
     )

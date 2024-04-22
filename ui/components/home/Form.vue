@@ -20,18 +20,37 @@ export default {
     return {
       number: "",
       errorMessages: [],
+      maxAbsoluteValue: new BigNumber("999999999999999999999999999999999"),
     };
   },
   methods: {
     validateInput() {
-      const maxNumber = new BigNumber("999999999999999999999999999999999");
-      const numberSchema = z
-        .string()
-        .transform((value) => new BigNumber(value))
-        .refine((num) => !num.isNaN(), { message: "Valid number is required" })
-        .refine((num) => num.abs().lte(maxNumber), {
-          message: `The absolute value must not exceed ${maxNumber.toString()}`,
-        });
+      const numberSchema = z.preprocess(
+        (val) => {
+          const isEmpty = !val || val === "";
+          console.log({ val });
+
+          if (isEmpty) return null;
+
+          const bigNumber = new BigNumber(val);
+          const isValidBigNumber = bigNumber.isFinite();
+          return isValidBigNumber ? bigNumber.toPrecision() : val;
+        },
+
+        z
+          .custom()
+          .refine((val) => val !== null, { message: "Number is required" })
+          .refine((val) => !new BigNumber(val).isNaN(), {
+            message: `Number is invalid ${this.number}`,
+          })
+          .refine(
+            (val) =>
+              !new BigNumber(val).absoluteValue() <= this.maxAbsoluteValue,
+            {
+              message: `Number is out of supported range receive: ${this.number}; Max absolute value allowed is ${this.maxAbsoluteValue.toString()}`,
+            },
+          ),
+      );
 
       const result = numberSchema.safeParse(this.number);
       if (result.success) {

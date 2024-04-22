@@ -10,10 +10,8 @@ class NumberRequestSerializer(serializers.Serializer):
         value: str,
     ) -> float | serializers.ValidationError:
         try:
-            float_value = float(value)
-            if float_value.is_integer():
-                return int(float_value)
-            return float_value
+            _ = float(value)
+            return value
         except ValueError:
             raise serializers.ValidationError(
                 {"number": "Input must be a valid number."}
