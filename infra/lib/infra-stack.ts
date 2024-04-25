@@ -12,8 +12,7 @@ export class InfraStack extends cdk.Stack {
     const vpc = new ec2.Vpc(this, "DjangoVpc", { maxAzs: 2 });
     const cluster = new ecs.Cluster(this, "DjangoCluster", { vpc });
 
-    const certificateArn =
-      "arn:aws:acm:us-east-1:019749023127:certificate/8b264eca-62d5-4cb0-bec7-7d201e916397";
+    const certificateArn = process.env.INFRA_SSL!;
     const certificate = acm.Certificate.fromCertificateArn(
       this,
       "Certificate",

@@ -38,8 +38,7 @@ export class UiAppDeploymentStack extends cdk.Stack {
       removalPolicy: cdk.RemovalPolicy.DESTROY,
     });
 
-    const certificateArn =
-      "arn:aws:acm:us-east-1:019749023127:certificate/1cb041d3-bd8e-4dd2-9364-68fd8c76e0c3";
+    const certificateArn = process.env.UI_SSL!;
     const certificate = acm.Certificate.fromCertificateArn(
       this,
       "Certificate",

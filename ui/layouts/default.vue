@@ -87,7 +87,7 @@ export default {
       this.showModal = true;
       setTimeout(() => {
         this.showModal = false;
-      }, 5000);
+      }, 1500);
     },
   },
 };

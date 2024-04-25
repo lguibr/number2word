@@ -19,7 +19,7 @@ export default { name: "Spinner" };
     radial-gradient(farthest-side, #fff 90%, #0000) 0 5px/8px 8px content-box,
     #000;
   background-repeat: no-repeat;
-  animation: l3 4s infinite linear;
+  animation: l3 1.5s infinite linear;
 }
 
 @keyframes l3 {
