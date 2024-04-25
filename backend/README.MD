@@ -1,6 +1,6 @@
-# Trellis Law Server
+# Number2Words Server
 
-![](https://github.com/lguibr/trellis-law/actions/workflows/ci.yml/badge.svg)
+![](https://github.com/lguibr/number-2-words/actions/workflows/ci.yml/badge.svg)
 
 This project is a Django-based web application designed for number conversion to words. It includes a robust Docker setup, Mypy for static type checking, Pytest for testing, and is configured for both development and production environments.
 
@@ -17,7 +17,7 @@ Before you begin, ensure you have installed:
 ### Structure
 
 ```
-/trellis-law
+/number-2-words
 |-- backend/
 | |-- backend/
 | | |-- **init**.py
@@ -57,19 +57,19 @@ To get this project up and running locally on your machine:
 1. **Clone the repository**:
 
    ```
-   git clone git@github.com:lguibr/trellis-law.git
-   cd trellis-law/backend
+   git clone git@github.com:lguibr/number-2-words.git
+   cd number-2-words/backend
    ```
 
 2. **Build the Docker container**:
 
    ```
-   docker build -t trellis-law-server .
+   docker build -t number-2-words-server .
    ```
 
 3. **Run the Docker container**:
    ```
-   docker run -p 8000:8000 trellis-law-server
+   docker run -p 8000:8000 number-2-words-server
    ```
 
 You should now have the application running and accessible at `http://localhost:8000/`.
@@ -152,12 +152,12 @@ Deploying with Docker simplifies setting up the environment and dependencies. Fo
 2. **Build the Docker image**:
 
    ```
-   docker build -t trellis-law-server .
+   docker build -t number-2-words-server .
    ```
 
 3. **Run the Docker container**:
    ```
-   docker run -p 8000:8000 --env-file .env trellis-law-server
+   docker run -p 8000:8000 --env-file .env number-2-words-server
    ```
 
 This will start the server bound to port 8000 of your host, making the application accessible at `http://localhost:8000/`.

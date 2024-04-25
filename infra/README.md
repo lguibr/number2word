@@ -1,8 +1,8 @@
-# Infrastructure Trellis-Law Project
+# Infrastructure Number2Words
 
-![](https://github.com/lguibr/trellis-law/actions/workflows/ci.yml/badge.svg)
+![](https://github.com/lguibr/number-2-words/actions/workflows/ci.yml/badge.svg)
 
-This repository contains the AWS Cloud Development Kit (CDK) infrastructure code located in the `infra` folder. It is designed to deploy and manage the cloud resources necessary for both the frontend and backend components of the Trellis-Law project.
+This repository contains the AWS Cloud Development Kit (CDK) infrastructure code located in the `infra` folder. It is designed to deploy and manage the cloud resources necessary for both the frontend and backend components of the Number2Words project.
 
 ## Structure
 
@@ -97,7 +97,7 @@ This stack manages the deployment of the frontend static files to an Amazon S3 b
 1. **Navigate to the infra directory:**
 
    ```bash
-   cd trellis-law/infra
+   cd number-2-words/infra
    ```
 
 2. **Install dependencies:**
@@ -134,7 +134,7 @@ This stack manages the deployment of the frontend static files to an Amazon S3 b
 
 - Ensure that the AWS region and account settings are correct before deploying.
 - Consider the AWS service costs associated with deploying these resources.
-- Customize environment variables and other settings as needed to fit the specific requirements of the Trellis-Law project.
+- Customize environment variables and other settings as needed to fit the specific requirements of the Number2Words project.
 
 ## Next Steps
 

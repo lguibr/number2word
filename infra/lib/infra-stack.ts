@@ -35,9 +35,7 @@ export class InfraStack extends cdk.Stack {
               DB_USER: process.env.DB_USER ?? "lguibr",
               DB_PASSWORD: process.env.DB_PASSWORD ?? "lguibr",
             },
-            image: ecs.ContainerImage.fromRegistry(
-              "lguibr/django-trellis-example:latest"
-            ),
+            image: ecs.ContainerImage.fromRegistry("lguibr/django-rest:latest"),
             containerPort: 8000,
           },
           publicLoadBalancer: true,

@@ -1,10 +1,10 @@
-# Trellis-Law UI Web App
+# Number2Word UI Web App
 
-![](https://github.com/lguibr/trellis-law/actions/workflows/ci.yml/badge.svg)
+![](https://github.com/lguibr/number-2-words/actions/workflows/ci.yml/badge.svg)
 
 This Vue/Nuxt/Vuetify web app converts numbers to words. It's built for efficiency with front-end validations and snappy page transitions that keep the UI responsive and interactive.Access the latest deployment at [number2word.luisguilher.me](https://number2word.luisguilher.me).
 
-![Gif of app running](./../assets/trellis-ui-showcase.gif)
+![Gif of app running](./../assets/number2words.gif)
 
 ## Key Pages
 

@@ -1,6 +1,6 @@
-# Trellis Law
+# Number2Word
 
-![](https://github.com/lguibr/trellis-law/actions/workflows/ci.yml/badge.svg)
+![](https://github.com/lguibr/number-2-words/actions/workflows/ci.yml/badge.svg)
 
 ## Quick Links 🚀
 
@@ -40,7 +40,7 @@ graph TB
 
 ## CI/CD Pipeline
 
-Our CI/CD pipeline, built with GitHub Actions, manages automated testing, building, and deployment for both the frontend and backend of the Trellis-Law project. It triggers on pushes to the `main` branch and on pull requests to ensure all changes are properly vetted before deployment.
+Our CI/CD pipeline, built with GitHub Actions, manages automated testing, building, and deployment for both the frontend and backend of the Number2Words project. It triggers on pushes to the `main` branch and on pull requests to ensure all changes are properly vetted before deployment.
 
 ### Workflow Steps
 
@@ -98,8 +98,8 @@ To begin using this project, follow these steps:
 1. **Clone the Repository:**
 
    ```
-   git clone git@github.com:lguibr/trellis-law.git
-   cd trellis-law
+   git clone git@github.com:lguibr/number-2-words.git
+   cd number-2-words
    ```
 
 2. **API Server Setup:**

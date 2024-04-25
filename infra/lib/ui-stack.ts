@@ -11,7 +11,7 @@ export class UiAppDeploymentStack extends cdk.Stack {
     super(scope, id, props);
 
     const bucket = new s3.Bucket(this, "UiAppBucket", {
-      bucketName: "bucket-trellis-law-ui-adhoc",
+      bucketName: "bucket-number-2-words-ui-adhoc",
       websiteIndexDocument: "index.html",
       publicReadAccess: true,
       objectOwnership: s3.ObjectOwnership.OBJECT_WRITER,

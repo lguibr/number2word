@@ -103,7 +103,7 @@ jobs:
         with:
           context: ./backend
           push: true
-          tags: lguibr/django-trellis-example:latest
+          tags: lguibr/django-rest:latest
 
   cdk-diff:
     if: github.event_name == 'pull_request'

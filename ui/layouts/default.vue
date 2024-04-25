@@ -31,7 +31,7 @@
       </v-main>
 
       <v-footer app class="align_end">
-        <NuxtLink to="https://github.com/lguibr/trellis-law">
+        <NuxtLink to="https://github.com/lguibr/number-2-words">
           <v-btn icon end>
             <v-icon class="icon" icon="mdi-github" />
           </v-btn>
