@@ -2,12 +2,6 @@
 
 ![](https://github.com/lguibr/number-2-words/actions/workflows/ci.yml/badge.svg)
 
-## Quick Links 🚀
-
-- **🌐 Web Application UI**: [Access the web app here!](https://number2word.luisguilher.me/)
-- **📚 Documentation**: [Dive into the docs here!](https://word2vector.luisguilher.me/docs)
-- **🔗 API Example**: [See '42' become 'forty-two'](https://word2vector.luisguilher.me/num_to_english/42)
-
 ## Overview
 
 This repository hosts a full-stack application designed to convert numeric values into their corresponding English word representation. The back-end is built using Django, exposing two primary API endpoints that allow users to input numbers and receive them as written words. The front-end is a Vue/Nuxt application that provides a user-friendly interface for real-time interaction with the API. The project also includes infrastructure-as-code for AWS deployment using AWS Cloud Development Kit (CDK).

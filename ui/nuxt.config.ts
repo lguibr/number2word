@@ -6,8 +6,7 @@ export default defineNuxtConfig({
   runtimeConfig: {
     public: {
       backed_base_url:
-        process.env.BACKEND_BASE_URL ??
-        "https://word2vector.luisguilher.me",
+        process.env.BACKEND_BASE_URL ?? "https://word2vector.luisguilher.me",
     },
   },
   ssr: false,

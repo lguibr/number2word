@@ -76,8 +76,6 @@ You should now have the application running and accessible at `http://localhost:
 
 ## API Documentation
 
-Access the API documentation and interact with the API through the Swagger UI deployed at [word2vector.luisguilher.me/docs](https://word2vector.luisguilher.me/docs). This link provides a visual interface for the API's endpoints, allowing for easy testing and exploration of its functionalities.
-
 ![Swagger Screen Shoot](./../assets/swaggerui-screenshot.png)
 
 - **Swagger JSON**: http://localhost:8000/swagger/
