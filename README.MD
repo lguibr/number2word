@@ -4,6 +4,11 @@
 
 ## Overview
 
+<p align="center">
+  <img src="bitmap.png" alt="Logo" width="300"/>
+</p>
+
+
 This repository hosts a full-stack application designed to convert numeric values into their corresponding English word representation. The back-end is built using Django, exposing two primary API endpoints that allow users to input numbers and receive them as written words. The front-end is a Vue/Nuxt application that provides a user-friendly interface for real-time interaction with the API. The project also includes infrastructure-as-code for AWS deployment using AWS Cloud Development Kit (CDK).
 
 ### Components
